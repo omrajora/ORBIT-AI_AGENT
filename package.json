@@ -1,0 +1,36 @@
+{
+  "name": "orbit-agent",
+  "version": "1.0.0",
+  "description": "ORBIT - Personal AI Action Agent with MCP over Streamable HTTP and Read-Back Verification",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "services/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "setup": "npm install",
+    "dev": "concurrently -n \"MCP-SERVER,API-ORCHESTRATOR,WEB-CONSOLE\" -c \"cyan,magenta,green\" \"npm run dev -w services/mcp-server\" \"npm run dev -w services/api\" \"npm run dev -w apps/web\"",
+    "dev:mcp": "npm run dev -w services/mcp-server",
+    "dev:api": "npm run dev -w services/api",
+    "dev:web": "npm run dev -w apps/web",
+    "db:reset": "node services/api/scripts/seed.js",
+    "test": "node tests/run-all-tests.js",
+    "pdf": "node scripts/generate-pdf.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "pdfkit": "^0.20.2"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "agentic-ai",
+    "alexa-plus",
+    "action-agent",
+    "read-back-verification"
+  ],
+  "author": "ORBIT Team",
+  "license": "MIT"
+}
